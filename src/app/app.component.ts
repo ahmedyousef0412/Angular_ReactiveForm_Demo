@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CustomValidator } from './CustomValidators/noSpaceAllowed.validator';
 
 
 @Component({
@@ -25,12 +26,14 @@ export class AppComponent implements OnInit {
       firstname: new FormControl(null,[
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(8)
+        Validators.maxLength(8),
+        CustomValidator.noSpaceAllowed
       ]),
       lastname: new FormControl(null,[
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(12)
+        Validators.maxLength(12),
+        CustomValidator.noSpaceAllowed
       ]),
       email: new FormControl(null,[
          Validators.email,
@@ -63,22 +66,28 @@ export class AppComponent implements OnInit {
   public get firstName(): FormControl {
     return this.registrationForm.get('firstname') as FormControl;
   }
+
   public get street(): FormControl {
     return this.registrationForm.get('address.street') as FormControl;
   }
+
   public get country(): FormControl {
     return this.registrationForm.get('address.country') as FormControl;
   }
+
   public get city(): FormControl {
     return this.registrationForm.get('address.city') as FormControl;
   }
+
   
   public get region(): FormControl {
     return this.registrationForm.get('address.region') as FormControl;
   }
+
   public get postal(): FormControl {
     return this.registrationForm.get('address.postal') as FormControl;
   }
+
   onFormSubmitted(){
     // console.log(this.registrationForm.value.address.region);
      console.log(this.registrationForm.value);
