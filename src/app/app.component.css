@@ -101,9 +101,9 @@
     transition: all 0.2s ease;
     background: #E7005E;
   }
-  .form .submit-btn:hover {
+  /* .form .submit-btn:hover {
     background: #E70044;
-  }
+  } */
   /*Responsive*/
   @media screen and (max-width: 500px) {
     .form .column {
@@ -200,4 +200,8 @@
   }
   .container.PENDING{
     border: orange 3px solid;
+  }
+  small{
+    color: red;
+    font: bold;
   }
