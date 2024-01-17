@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
@@ -47,7 +47,10 @@ export class AppComponent implements OnInit {
         city: new FormControl(null,Validators.required),
         region: new FormControl(null,Validators.required),
         postal: new FormControl(null,Validators.required)
-      })    
+      }),
+      skills: new FormArray([
+        new FormControl(null , Validators.required)
+      ]) 
       
 
     });
@@ -81,5 +84,14 @@ export class AppComponent implements OnInit {
 
  get isFormValid(){
    return this.registrationForm.invalid;
+  }
+
+  addSkill(){
+    (<FormArray> this.registrationForm.get('skills')).push(new FormControl(null , Validators.required));
+  }
+
+  removeSkill(index:number){
+    const controls = <FormArray> this.registrationForm.get('skills');
+    controls.removeAt(index);
   }
 }
