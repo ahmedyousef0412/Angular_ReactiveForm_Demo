@@ -50,7 +50,10 @@ export class AppComponent implements OnInit {
       }),
       skills: new FormArray([
         new FormControl(null , Validators.required)
-      ]) 
+      ]),
+      experience:new FormArray([
+        
+      ])
       
 
     });
@@ -92,6 +95,23 @@ export class AppComponent implements OnInit {
 
   removeSkill(index:number){
     const controls = <FormArray> this.registrationForm.get('skills');
+    controls.removeAt(index);
+  }
+
+  addExperience(){
+    const formGroup = new FormGroup({
+
+      company:new FormControl(null ,Validators.required),
+      position:new FormControl(null ,Validators.required),
+      totalExp:new FormControl(null ,Validators.required),
+      startDate:new FormControl(null ,Validators.required),
+      endDate:new FormControl(null ,Validators.required),
+    });
+    (<FormArray>this.registrationForm.get('experience')).push(formGroup);
+  }
+
+  deleteExperience(index:number){
+    const controls = <FormArray> this.registrationForm.get('experience');
     controls.removeAt(index);
   }
 }
